@@ -1,68 +1,88 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React로 블로그 만들기
 
-## Available Scripts
+[sejun3278님의 블로그][https://m.blog.naver.com/sejun3278/221569414455]를 보고 따라 만들어 보았습니다.
 
-In the project directory, you can run:
+실습환경
 
-### `yarn start`
+- mac
+- yarn 1.21.1
+- vscode
+- node v12.14.0
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+0. React 설치
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+   ```zsh
+   cd ~/설치하고싶은경로
+   yarn create react-app <디렉토리명>
 
-### `yarn test`
+   // 리액트 실행
+   cd <디렉토리명>
+   yarn start
+   ```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. React 서버 구축하기
 
-### `yarn build`
+   1-1. express 모듈 설치
+   1-2. 포트 할당하기
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```javascript
+   const PORT = process.env.PORT || 4000;
+   ```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+   1-3. 서버 응답 출력하기
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```javascript
+   // 해당 경로로 들어갔을 경우 응답을 렌더링
+   app.get("/", (req, res) => {
+     res.send("Response Complete");
+     // localhost:4000/ 에 들어가면 화면에 응답이 출력한 것을 볼 수 있다.
+   });
+   ```
 
-### `yarn eject`
+   1-4. 서버 실행하기
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+   ```javascript
+   // app의 listen 메소드를 사용해서 서버를 읽어올 수 있습니다.
+   app.listen(PORT, () => {
+     console.log(`server on : http://localhost:${PORT}/`);
+   });
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```zsh
+   node server.js
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. 서버와 클라이언트 연동하기
+   2-1. 서버와 클라이언트를 연동하기 위해서는 'Webpack'을 기본적으로 사용하게 되는데 'Webpack'은 의존 관계에 있는 모듈들을 하나의 자바스크립트 파일로 만들어주는 역할을 합니다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   yarn eject라는 명령어를 통해 webpack을 사용할 수 있는데 그 전에 자동으로 설치된 git의 변동사항들을 commit 하고 명령어를 실행해주어야 합니다.
 
-## Learn More
+   ```zsh
+   git add .
+   git commit -m "first commit"
+   yarn eject
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   config폴더 안에 있는 webpack.config.dev.js로 들어가서 수정을 해주어야 합니다.
+   만약 webpack.config.dev.js 가 없다면 (저도 없었습니다.)
+   http://blogattach.naver.net/f96ce5504c7273c5e3096b536581f28a277486bd/20190624_141_blogfile/sejun3278_1561359470930_1ZjI6B_js/webpack.config.dev.js
+   링크를 누르셔서 다운 받으시면 되겠습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   138번 줄에 있는 plugins : [
+   .... 위에 다음 코드를 추가해주시면 됩니다.
+   ]
 
-### Code Splitting
+   ```javascript
+   devServer : {
+       port : 4000,
+       open : true,
+       proxy : {
+           "/" : "http://localhost"
+       }
+   },
+   plugins : [
+       new webpack ....
+   ]
+   ```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+3) 서버와 클라이언트 동시에
