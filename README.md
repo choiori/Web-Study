@@ -43,9 +43,23 @@ git pull origin master
 
 바탕화면에 저희가 만든 폴더와 제 레포지토리의 내용이 그대로 옮겨진 것을 볼 수 있을 겁니다.
 
-#### How to checkcout
+#### How to checkcout branch
+
+터미널을 열고 만드신 로컬 프로젝트 폴더로 이동합니다.
+
+순서대로 입력합니다.
+
+```bash
+git pull origin <study-branch> # publisher의 경우 git pull origin publisher
+git checkout <study-branch> # checkout to branch
+```
 
 #### How to regist issue on this repo
+
+![screenShot4](./img/master-issue.png)
+
+레포지토리 페이지 상단의 `issue` 탭에서 `New issue`를 클릭  
+자유로운 질문 및 의견 남겨주시면 되겠습니다.
 
 ## Study List
 
