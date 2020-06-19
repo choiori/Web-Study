@@ -1,11 +1,11 @@
-# 웹 프로그래밍 스터디
+# 웹 프로그래밍 스터디 - Publisher
 
-이 저장소는 웹 프로그래밍을 처음 공부하시는 분들을 위한 스터디용 코드 저장소 입니다.
+이 저장소는 퍼블리싱 기초 스터디 실습 레포지토리입니다.
 
-## How to Use
+## Our Goal
 
-각 챕터별로 브랜치를 나누어 코드를 저장해 놓고 있으며  
-브랜치 별로 README.md 를 작성해 놓았습니다.
+프로젝트를 진행하며 역할에따라 브랜치를 나누어
+각 파트별로 분업하여 하나의 웹 페이지를 같이 만들어갈 계획입니다.
 
 ### Github & git docs
 
@@ -63,17 +63,13 @@ git checkout <study-branch> # checkout to branch
 
 ## Study List
 
-1. publishing
+1. HTML / CSS
 
-html / css / js
+2. JS
 
-2. front-end
+## Clone Project
 
-Vue.js / Vuex / Vue-Router / Vue-cli
-
-3. fullstack
-
-Vue + Spring
+원본 페이지 :
 
 ## Contributors & Contact
 
@@ -82,7 +78,6 @@ Vue + Spring
 
 ## Update Log
 
-### Master branch
+### Publisher branch
 
-- 브랜치 생성 및 README.md 작성
-- Notion 페이지 생성
+- 브랜치 생성 및 README 수정
